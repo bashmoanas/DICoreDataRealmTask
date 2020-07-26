@@ -15,6 +15,11 @@ class TaskDetailsViewController: UITableViewController {
     
     var task: Task!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

@@ -60,7 +60,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="V7v-bS-4Ty">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="bQ8-13-scV">
                                 <cells>
@@ -72,7 +72,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add new task" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MjX-Ud-Yj8">
-                                                    <rect key="frame" x="20" y="5" width="280" height="34"/>
+                                                    <rect key="frame" x="20" y="4.5" width="280" height="35"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -82,6 +82,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="MjX-Ud-Yj8" secondAttribute="trailing" constant="20" id="36W-KP-Xbd"/>
+                                                <constraint firstAttribute="bottom" secondItem="MjX-Ud-Yj8" secondAttribute="bottom" constant="4.5" id="YkB-c1-vfk"/>
                                                 <constraint firstItem="MjX-Ud-Yj8" firstAttribute="centerY" secondItem="bT5-8N-RmX" secondAttribute="centerY" id="azC-fy-sNo"/>
                                                 <constraint firstItem="MjX-Ud-Yj8" firstAttribute="leading" secondItem="bT5-8N-RmX" secondAttribute="leading" constant="20" id="hzR-KO-8Yu"/>
                                             </constraints>
