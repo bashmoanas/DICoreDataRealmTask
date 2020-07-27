@@ -15,6 +15,8 @@ class AllTasksViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        taskStore.allTasks = taskStore.fetchTasks() ?? [Task]()
+        
         tableView.reloadData()
     }
     
@@ -38,28 +40,28 @@ class AllTasksViewController: UITableViewController {
         }
     }
         
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        if segue.identifier == "EditTask" {
-            let indexPath = tableView.indexPathForSelectedRow!
-            let task = taskStore.getTaskAt(index: indexPath.row)
-            let taskDetailsViewController = segue.destination as! TaskDetailsViewController
-            taskDetailsViewController.task = task
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        super.prepare(for: segue, sender: sender)
+//        
+//        if segue.identifier == "EditTask" {
+//            let indexPath = tableView.indexPathForSelectedRow!
+//            let task = taskStore.getTaskAt(index: indexPath.row)
+//            let taskDetailsViewController = segue.destination as! TaskDetailsViewController
+//            taskDetailsViewController.task = task
+//        }
+//    }
     
-    @IBAction func unwindToAllTaskViewController(_ segue: UIStoryboardSegue) {
-        guard segue.identifier == "SaveUnwind",
-            let taskDetailsViewController = segue.source as? TaskDetailsViewController,
-            let task = taskDetailsViewController.task else { return }
-        
-        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            taskStore.allTasks[selectedIndexPath.row] = task
-        } else {
-            let newIndexPath = IndexPath(row: taskStore.allTasks.count, section: 0)
-            taskStore.allTasks.append(task)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
-        }
-    }
+//    @IBAction func unwindToAllTaskViewController(_ segue: UIStoryboardSegue) {
+//        guard segue.identifier == "SaveUnwind",
+//            let taskDetailsViewController = segue.source as? TaskDetailsViewController,
+//            let task = taskDetailsViewController.task else { return }
+//
+//        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+//            taskStore.allTasks[selectedIndexPath.row] = task
+//        } else {
+//            let newIndexPath = IndexPath(row: taskStore.allTasks.count, section: 0)
+//            taskStore.allTasks.append(task)
+//            tableView.insertRows(at: [newIndexPath], with: .automatic)
+//        }
+//    }
 }

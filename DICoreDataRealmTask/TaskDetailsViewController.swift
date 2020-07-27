@@ -13,7 +13,9 @@ class TaskDetailsViewController: UITableViewController {
     @IBOutlet var taskNameTextField: UITextField!
     @IBOutlet var saveButton: UIBarButtonItem!
     
-    var task: Task!
+//    var task: Task!
+    
+    let taskStore = TaskStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +25,9 @@ class TaskDetailsViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let task = task {
-            taskNameTextField.text = task.name
-        }
+//        if let task = task {
+//            taskNameTextField.text = task.name
+//        }
         
         updateSaveButtonState()
     }
@@ -39,10 +41,12 @@ class TaskDetailsViewController: UITableViewController {
         updateSaveButtonState()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "SaveUnwind" else { return }
+    @IBAction func saveTask(_ sender: UIBarButtonItem) {
+        guard let taskName = taskNameTextField.text else { return }
         
-        let taskName = taskNameTextField.text ?? ""
-        task = Task(name: taskName)
+        let task = Task(name: taskName)
+        
+        taskStore.createTask(task)
+        
     }
 }

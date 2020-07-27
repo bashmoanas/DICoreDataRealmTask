@@ -104,7 +104,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="MFy-9s-sJX">
                             <connections>
-                                <segue destination="8Bh-Pd-4ET" kind="unwind" identifier="SaveUnwind" unwindAction="unwindToAllTaskViewController:" id="Gzh-XR-TcO"/>
+                                <action selector="saveTask:" destination="FIi-Rf-xst" id="lOS-W4-KRj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
