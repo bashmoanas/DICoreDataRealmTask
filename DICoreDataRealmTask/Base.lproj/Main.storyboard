@@ -31,9 +31,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="FIi-Rf-xst" kind="show" identifier="EditTask" id="0Pz-KH-NMN"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -44,7 +41,7 @@
                     <navigationItem key="navigationItem" title="All Tasks" id="wM5-0t-rpi">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="UWU-o6-GDm">
                             <connections>
-                                <segue destination="FIi-Rf-xst" kind="show" identifier="AddSegue" id="2Jl-rG-iau"/>
+                                <action selector="addTask:" destination="Ism-1t-qg9" id="yT6-5e-DNv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -56,7 +53,7 @@
         <!--Task Details View Controller-->
         <scene sceneID="GlS-h1-d53">
             <objects>
-                <tableViewController id="FIi-Rf-xst" customClass="TaskDetailsViewController" customModule="DICoreDataRealmTask" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="taskDetailsViewController" id="FIi-Rf-xst" customClass="TaskDetailsViewController" customModule="DICoreDataRealmTask" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="V7v-bS-4Ty">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,26 +93,15 @@
                             <outlet property="delegate" destination="FIi-Rf-xst" id="ODt-yW-Svc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="fHh-q9-KDJ">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Jn0-6L-agH">
-                            <connections>
-                                <action selector="cancelButtonTapped:" destination="FIi-Rf-xst" id="ZKT-Lv-rGm"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="MFy-9s-sJX">
-                            <connections>
-                                <action selector="saveTask:" destination="FIi-Rf-xst" id="lOS-W4-KRj"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="saveButton" destination="MFy-9s-sJX" id="Yoh-eG-qYn"/>
                         <outlet property="taskNameTextField" destination="MjX-Ud-Yj8" id="6m0-Oh-cga"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cWz-Bk-lwV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1545" y="119"/>
+            <point key="canvasLocation" x="1639" y="119"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fWy-7m-Li2">
@@ -134,7 +120,4 @@
             <point key="canvasLocation" x="-257" y="120"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="2Jl-rG-iau"/>
-    </inferredMetricsTieBreakers>
 </document>

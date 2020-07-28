@@ -8,17 +8,21 @@
 
 import UIKit
 
-class AllTasksViewController: UITableViewController {
-        
+class AllTasksViewController: UITableViewController, TaskCreationProtocol {
+    
+    // MARK: - Variables
+    
     var taskStore = TaskStore(taskStore: CDTaskRepository())
+    
+    // MARK: - View Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         taskStore.allTasks = taskStore.fetchTasks() ?? [Task]()
-        
-        tableView.reloadData()
     }
+    
+    // MARK: - Table View Data Source Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskStore.taskCount
@@ -27,41 +31,89 @@ class AllTasksViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath)
         let task = taskStore.getTaskAt(index: indexPath.row)
-        cell.textLabel?.text = task.name
+        configure(cell, withTask: task)
         
         return cell
     }
     
+    // MARK: - Table View Delegates Methods
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let task = taskStore.getTaskAt(index: indexPath.row)
-            taskStore.deleteTask(task)
+            guard taskStore.deleteTask(task) else { return }
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
-        
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        super.prepare(for: segue, sender: sender)
-//        
-//        if segue.identifier == "EditTask" {
-//            let indexPath = tableView.indexPathForSelectedRow!
-//            let task = taskStore.getTaskAt(index: indexPath.row)
-//            let taskDetailsViewController = segue.destination as! TaskDetailsViewController
-//            taskDetailsViewController.task = task
-//        }
-//    }
     
-//    @IBAction func unwindToAllTaskViewController(_ segue: UIStoryboardSegue) {
-//        guard segue.identifier == "SaveUnwind",
-//            let taskDetailsViewController = segue.source as? TaskDetailsViewController,
-//            let task = taskDetailsViewController.task else { return }
-//
-//        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-//            taskStore.allTasks[selectedIndexPath.row] = task
-//        } else {
-//            let newIndexPath = IndexPath(row: taskStore.allTasks.count, section: 0)
-//            taskStore.allTasks.append(task)
-//            tableView.insertRows(at: [newIndexPath], with: .automatic)
-//        }
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedIndexPath = tableView.indexPathForSelectedRow!
+        let selectedTask = taskStore.getTaskAt(index: selectedIndexPath.row)
+        pushToTashDetailsViewController(withTask: selectedTask)
+    }
+    
+    // MARK: - Data Passing
+    
+    func userCreated(_ task: Task) {
+        let newIndexPath = IndexPath(row: taskStore.allTasks.count, section: 0)
+        taskStore.allTasks.append(task)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
+    }
+    
+    func userUpdated(_ task: Task) {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            taskStore.allTasks[indexPath.row] = task
+        }
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func presentTaskDetailsViewController() {
+        let taskDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "taskDetailsViewController") as! TaskDetailsViewController
+        let navigationController = UINavigationController(rootViewController: taskDetailsViewController)
+        taskDetailsViewController.taskStore = taskStore
+        taskDetailsViewController.delegate = self
+        present(navigationController, animated: true, completion: nil)
+    }
+    
+    private func pushToTashDetailsViewController(withTask task: Task) {
+        let taskDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "taskDetailsViewController") as! TaskDetailsViewController
+        taskDetailsViewController.task = task
+        navigationController?.pushViewController(taskDetailsViewController, animated: true)
+    }
+    
+    private func configure(_ cell: UITableViewCell, withTask task: Task) {
+        cell.textLabel?.text = task.name
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func addTask(_ sender: UIBarButtonItem) {
+        presentTaskDetailsViewController()
+    }
+    
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        super.prepare(for: segue, sender: sender)
+    //
+    //        if segue.identifier == "EditTask" {
+    //            let indexPath = tableView.indexPathForSelectedRow!
+    //            let task = taskStore.getTaskAt(index: indexPath.row)
+    //            let taskDetailsViewController = segue.destination as! TaskDetailsViewController
+    //            taskDetailsViewController.task = task
+    //        }
+    //    }
+    
+    //    @IBAction func unwindToAllTaskViewController(_ segue: UIStoryboardSegue) {
+    //        guard segue.identifier == "SaveUnwind",
+    //            let taskDetailsViewController = segue.source as? TaskDetailsViewController,
+    //            let task = taskDetailsViewController.task else { return }
+    //
+    //        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+    //            taskStore.allTasks[selectedIndexPath.row] = task
+    //        } else {
+    //            let newIndexPath = IndexPath(row: taskStore.allTasks.count, section: 0)
+    //            taskStore.allTasks.append(task)
+    //            tableView.insertRows(at: [newIndexPath], with: .automatic)
+    //        }
+    //    }
 }

@@ -8,39 +8,46 @@
 
 import UIKit
 
+protocol TaskCreationProtocol: class {
+    func userCreated(_ task: Task)
+    func userUpdated(_ task: Task)
+}
+
 class TaskDetailsViewController: UITableViewController {
     
-    @IBOutlet var taskNameTextField: UITextField!
-    @IBOutlet var saveButton: UIBarButtonItem!
+    // MARK: - Outlets
     
-//    var task: Task!
+    @IBOutlet var taskNameTextField: UITextField!
+    
+    // MARK: - Variables
     
     var taskStore = TaskStore(taskStore: CDTaskRepository())
+    var task: Task!
+    var selectedTask: Task? { didSet { taskStore.updateTask(selectedTask!) } }
+    weak var delegate: TaskCreationProtocol?
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-//        if let task = task {
-//            taskNameTextField.text = task.name
-//        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTask))
         
         updateSaveButtonState()
+        
+        guard let task = task else { return }
+        taskNameTextField.text = task.name
     }
     
     // MARK: - Helper Methods
     
     private func updateSaveButtonState() {
         let taskName = taskNameTextField.text ?? ""
-        saveButton.isEnabled = !taskName.isEmpty
+        navigationItem.leftBarButtonItem?.isEnabled = taskName.isEmpty
     }
     
-    private func unwindToAllTasksViewController() {
-        navigationController?.popToRootViewController(animated: true)
+    private func dismissViewController() {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Actions
@@ -49,34 +56,12 @@ class TaskDetailsViewController: UITableViewController {
         updateSaveButtonState()
     }
     
-    @IBAction func saveTask(_ sender: UIBarButtonItem) {
+    @objc func saveTask() {
         guard let taskName = taskNameTextField.text else { return }
         
         let task = Task(name: taskName)
         taskStore.createTask(task)
-
-        unwindToAllTasksViewController()
-    }
-    
-    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        unwindToAllTasksViewController()
+        delegate?.userCreated(task)
+        dismissViewController()
     }
 }
-
-
-
-
-//@IBAction func goBackToFirstVC(sender: UIButton) {
-//    guard let controllers = navigationController?.viewControllers else { return }
-//    let count = controllers.count
-//    if count > 2 {
-//        // Third from the last is the viewController we want
-//        if let firstVC = controllers[count - 3] as? FirstViewController {
-//            // pass back some data
-//            firstVC.someProperty = someData
-//            firstVC.someOtherProperty = moreData
-//
-//            navigationController?.popToViewController(firstVC, animated: true)
-//        }
-//    }
-//}

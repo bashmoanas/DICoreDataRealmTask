@@ -28,21 +28,25 @@ struct CDTaskRepository: TaskRepository {
         return tasks
     }
     
-    func update(task: Task) {
+    func update(task: Task) -> Bool {
         let cdTask = getCDTask(byName: task.name)
-        guard cdTask != nil else { return }
+        guard cdTask != nil else { return false }
         
         cdTask?.name = task.name
         
         CDPersistentStorage.shared.saveContext()
+        
+        return true
     }
     
-    func delete(task: Task) {
+    func delete(task: Task) -> Bool {
         let cdTask = getCDTask(byName: task.name)
-        guard cdTask != nil else { return }
+        guard cdTask != nil else { return false }
         
         CDPersistentStorage.shared.context.delete(cdTask!)
         CDPersistentStorage.shared.saveContext()
+        
+        return true
     }
     
     // MARK: Helper Methods

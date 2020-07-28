@@ -22,9 +22,11 @@ struct TaskStore {
         return allTasks.count
     }
     
+    func getTaskAt(index: Int) -> Task {
+        return allTasks[index]
+    }
+    
     mutating func createTask(_ task: Task) {
-        //        let newTask = Task(name: name)
-        //        allTasks.append(newTask)
         taskDataRepository.create(task: task)
         allTasks.append(task)
     }
@@ -33,24 +35,17 @@ struct TaskStore {
         return taskDataRepository.getAll()
     }
     
-    func updateTask(_ task: Task) {
+    func updateTask(_ task: Task) -> Bool {
         return taskDataRepository.update(task: task)
     }
     
-    mutating func deleteTask(_ task: Task) {
-        guard let index = allTasks.firstIndex(of: task) else { return }
+    mutating func deleteTask(_ task: Task) -> Bool {
+        guard let index = allTasks.firstIndex(of: task) else { return false }
+        
+        guard taskDataRepository.delete(task: task) else { return false }
         allTasks.remove(at: index)
-        taskDataRepository.delete(task: task)
-    }
-    
-    func getTaskAt(index: Int) -> Task {
-        return allTasks[index]
-    }
-    
-    mutating func removeTask(_ task: Task) {
-        if let index = allTasks.firstIndex(of: task) {
-            allTasks.remove(at: index)
-        }
+        
+        return true
     }
     
 }
