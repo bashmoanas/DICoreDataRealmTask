@@ -33,14 +33,14 @@ struct TaskStore {
         return taskDataRepository.getAll()
     }
     
-    func updateTask(_ task: Task) -> Bool {
+    func updateTask(_ task: Task) {
         return taskDataRepository.update(task: task)
     }
     
-    mutating func deleteTask(_ task: Task) -> Bool {
-        guard let index = allTasks.firstIndex(of: task) else { return false }
+    mutating func deleteTask(_ task: Task) {
+        guard let index = allTasks.firstIndex(of: task) else { return }
         allTasks.remove(at: index)
-        return taskDataRepository.delete(task: task)
+        taskDataRepository.delete(task: task)
     }
     
     func getTaskAt(index: Int) -> Task {

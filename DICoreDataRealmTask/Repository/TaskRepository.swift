@@ -11,6 +11,6 @@ import Foundation
 protocol TaskRepository {
     func create(task: Task)
     func getAll() -> [Task]?
-    func update(task: Task) -> Bool
-    func delete(task: Task) -> Bool
+    func update(task: Task)
+    func delete(task: Task)
 }

@@ -35,9 +35,7 @@ class AllTasksViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let task = taskStore.getTaskAt(index: indexPath.row)
-            if taskStore.deleteTask(task) {
-                print("deleted \(task)")
-            }
+            taskStore.deleteTask(task)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }

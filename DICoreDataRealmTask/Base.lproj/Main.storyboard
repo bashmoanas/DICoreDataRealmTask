@@ -99,7 +99,7 @@
                     <navigationItem key="navigationItem" id="fHh-q9-KDJ">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Jn0-6L-agH">
                             <connections>
-                                <segue destination="8Bh-Pd-4ET" kind="unwind" unwindAction="unwindToAllTaskViewController:" id="zxC-p5-4OY"/>
+                                <action selector="cancelButtonTapped:" destination="FIi-Rf-xst" id="ZKT-Lv-rGm"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="MFy-9s-sJX">
@@ -114,7 +114,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cWz-Bk-lwV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="8Bh-Pd-4ET" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1545" y="119"/>
         </scene>
