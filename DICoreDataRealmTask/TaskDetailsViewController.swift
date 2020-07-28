@@ -23,19 +23,25 @@ class TaskDetailsViewController: UITableViewController {
     
     var taskStore = TaskStore(taskStore: CDTaskRepository())
     var task: Task!
-    var selectedTask: Task? { didSet { taskStore.updateTask(selectedTask!) } }
     weak var delegate: TaskCreationProtocol?
+    let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTask))
+    let updateButton = UIBarButtonItem(title: "Update", style: .done, target: self, action: #selector(updateTask))
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTask))
+        
         
         updateSaveButtonState()
         
-        guard let task = task else { return }
+        guard let task = task else {
+            navigationItem.rightBarButtonItem = saveButton
+            return
+        }
+        
+        navigationItem.rightBarButtonItem = updateButton
         taskNameTextField.text = task.name
     }
     
@@ -50,6 +56,12 @@ class TaskDetailsViewController: UITableViewController {
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
+    private func popViewController() {
+        let allTasksViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "allTasksViewController") as! TaskDetailsViewController
+        navigationController?.popToViewController(allTasksViewController, animated: true)
+        
+    }
+    
     // MARK: - Actions
     
     @IBAction func textEditingChanged(_sender: UITextField) {
@@ -58,10 +70,20 @@ class TaskDetailsViewController: UITableViewController {
     
     @objc func saveTask() {
         guard let taskName = taskNameTextField.text else { return }
-        
         let task = Task(name: taskName)
         taskStore.createTask(task)
         delegate?.userCreated(task)
+        
         dismissViewController()
     }
+    
+    @objc func updateTask() {
+        guard let taskName = taskNameTextField.text else { return }
+        let task = Task(name: taskName)
+        guard taskStore.updateTask(task) else { return }
+        delegate?.userUpdated(task)
+        
+        popViewController()
+    }
+    
 }

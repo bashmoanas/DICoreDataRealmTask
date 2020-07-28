@@ -61,11 +61,11 @@ class AllTasksViewController: UITableViewController, TaskCreationProtocol {
     }
     
     func userUpdated(_ task: Task) {
-        if let indexPath = tableView.indexPathForSelectedRow {
-            taskStore.allTasks[indexPath.row] = task
-        }
+        let selectedIndexPath = tableView.indexPathForSelectedRow!
+        taskStore.allTasks[selectedIndexPath.row] = task
+        tableView.reloadRows(at: [selectedIndexPath], with: .automatic)
     }
-    
+        
     // MARK: - Helper Methods
     
     private func presentTaskDetailsViewController() {
@@ -79,6 +79,7 @@ class AllTasksViewController: UITableViewController, TaskCreationProtocol {
     private func pushToTashDetailsViewController(withTask task: Task) {
         let taskDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "taskDetailsViewController") as! TaskDetailsViewController
         taskDetailsViewController.task = task
+        taskDetailsViewController.delegate = self
         navigationController?.pushViewController(taskDetailsViewController, animated: true)
     }
     
@@ -91,29 +92,4 @@ class AllTasksViewController: UITableViewController, TaskCreationProtocol {
     @IBAction func addTask(_ sender: UIBarButtonItem) {
         presentTaskDetailsViewController()
     }
-    
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        super.prepare(for: segue, sender: sender)
-    //
-    //        if segue.identifier == "EditTask" {
-    //            let indexPath = tableView.indexPathForSelectedRow!
-    //            let task = taskStore.getTaskAt(index: indexPath.row)
-    //            let taskDetailsViewController = segue.destination as! TaskDetailsViewController
-    //            taskDetailsViewController.task = task
-    //        }
-    //    }
-    
-    //    @IBAction func unwindToAllTaskViewController(_ segue: UIStoryboardSegue) {
-    //        guard segue.identifier == "SaveUnwind",
-    //            let taskDetailsViewController = segue.source as? TaskDetailsViewController,
-    //            let task = taskDetailsViewController.task else { return }
-    //
-    //        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-    //            taskStore.allTasks[selectedIndexPath.row] = task
-    //        } else {
-    //            let newIndexPath = IndexPath(row: taskStore.allTasks.count, section: 0)
-    //            taskStore.allTasks.append(task)
-    //            tableView.insertRows(at: [newIndexPath], with: .automatic)
-    //        }
-    //    }
 }
