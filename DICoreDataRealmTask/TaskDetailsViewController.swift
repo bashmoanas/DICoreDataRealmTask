@@ -32,8 +32,6 @@ class TaskDetailsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         updateSaveButtonState()
         
         guard let task = task else {
@@ -82,8 +80,6 @@ class TaskDetailsViewController: UITableViewController {
         let task = Task(name: taskName)
         guard taskStore.updateTask(task) else { return }
         delegate?.userUpdated(task)
-        
-        popViewController()
     }
     
 }
