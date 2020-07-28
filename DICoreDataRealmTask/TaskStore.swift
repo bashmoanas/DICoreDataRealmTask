@@ -10,7 +10,11 @@ import Foundation
 
 struct TaskStore {
     
-    var taskDataRepository = CDTaskRepository()
+    init(taskStore: TaskRepository) {
+        taskDataRepository = taskStore
+    }
+    
+    var taskDataRepository: TaskRepository!
     
     var allTasks = [Task]()
     
@@ -18,10 +22,11 @@ struct TaskStore {
         return allTasks.count
     }
     
-    func createTask(_ task: Task) {
-//        let newTask = Task(name: name)
-//        allTasks.append(newTask)
+    mutating func createTask(_ task: Task) {
+        //        let newTask = Task(name: name)
+        //        allTasks.append(newTask)
         taskDataRepository.create(task: task)
+        allTasks.append(task)
     }
     
     func fetchTasks() -> [Task]? {
@@ -32,7 +37,9 @@ struct TaskStore {
         return taskDataRepository.update(task: task)
     }
     
-    func deleteTask(_ task: Task) -> Bool {
+    mutating func deleteTask(_ task: Task) -> Bool {
+        guard let index = allTasks.firstIndex(of: task) else { return false }
+        allTasks.remove(at: index)
         return taskDataRepository.delete(task: task)
     }
     
@@ -45,5 +52,5 @@ struct TaskStore {
             allTasks.remove(at: index)
         }
     }
-        
+    
 }

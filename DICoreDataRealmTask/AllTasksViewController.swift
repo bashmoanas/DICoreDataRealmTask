@@ -10,7 +10,7 @@ import UIKit
 
 class AllTasksViewController: UITableViewController {
         
-    var taskStore: TaskStore!
+    var taskStore = TaskStore(taskStore: CDTaskRepository())
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -35,7 +35,9 @@ class AllTasksViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let task = taskStore.getTaskAt(index: indexPath.row)
-            taskStore.removeTask(task)
+            if taskStore.deleteTask(task) {
+                print("deleted \(task)")
+            }
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }

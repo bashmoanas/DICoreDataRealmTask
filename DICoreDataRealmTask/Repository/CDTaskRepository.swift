@@ -44,6 +44,7 @@ struct CDTaskRepository: TaskRepository {
         guard cdTask != nil else { return false }
         
         CDPersistentStorage.shared.context.delete(cdTask!)
+        CDPersistentStorage.shared.saveContext()
         
         return true
     }
@@ -52,7 +53,7 @@ struct CDTaskRepository: TaskRepository {
     
     private func getCDTask(byName name: String) -> CDTask? {
         let fetchRequest = NSFetchRequest<CDTask>(entityName: "CDTask")
-        let predicate = NSPredicate(format: "name==%@", name as CVarArg)
+        let predicate = NSPredicate(format: "name==%@", name)
         
         fetchRequest.predicate = predicate
         

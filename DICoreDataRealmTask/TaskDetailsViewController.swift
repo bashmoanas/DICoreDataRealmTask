@@ -15,7 +15,7 @@ class TaskDetailsViewController: UITableViewController {
     
 //    var task: Task!
     
-    let taskStore = TaskStore()
+    var taskStore = TaskStore(taskStore: CDTaskRepository())
     
     override func viewDidLoad() {
         super.viewDidLoad()
