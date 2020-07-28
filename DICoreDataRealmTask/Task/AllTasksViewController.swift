@@ -76,6 +76,12 @@ class AllTasksViewController: UITableViewController, TaskCreationProtocol {
         present(navigationController, animated: true, completion: nil)
     }
     
+    private func presentCategoriesViewController() {
+        let cagegoriesViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "categoriesViewController") as! CategoriesViewController
+        let navigationController = UINavigationController(rootViewController: cagegoriesViewController)
+        present(navigationController, animated: true, completion: nil)
+    }
+    
     private func pushToTashDetailsViewController(withTask task: Task) {
         let taskDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "taskDetailsViewController") as! TaskDetailsViewController
         taskDetailsViewController.task = task
@@ -87,9 +93,28 @@ class AllTasksViewController: UITableViewController, TaskCreationProtocol {
         cell.textLabel?.text = task.name
     }
     
+    private func showAlert() {
+        let alertConroller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertConroller.addAction(cancelAction)
+        
+        let addCategoryAction = UIAlertAction(title: "Add a category", style: .default) { (action) in
+            self.presentCategoriesViewController()
+        }
+        alertConroller.addAction(addCategoryAction)
+        
+        let addTaskAction = UIAlertAction(title: "Add a task", style: .default) { (action) in
+            self.presentTaskDetailsViewController()
+        }
+        alertConroller.addAction(addTaskAction)
+        
+        present(alertConroller, animated: true, completion: nil)
+    }
+    
     // MARK: - Actions
     
-    @IBAction func addTask(_ sender: UIBarButtonItem) {
-        presentTaskDetailsViewController()
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        showAlert()
     }
 }

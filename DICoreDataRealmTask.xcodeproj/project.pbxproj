@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A54DA44124D06B54007F7F3C /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DA44024D06B54007F7F3C /* CategoriesViewController.swift */; };
 		A55B02EB24CEFB1200F81413 /* CDTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55B02E924CEFB1200F81413 /* CDTask+CoreDataClass.swift */; };
 		A55B02EC24CEFB1200F81413 /* CDTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55B02EA24CEFB1200F81413 /* CDTask+CoreDataProperties.swift */; };
 		A55B02F124CEFB6600F81413 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55B02F024CEFB6600F81413 /* TaskRepository.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A54DA44024D06B54007F7F3C /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		A55B02E924CEFB1200F81413 /* CDTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTask+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		A55B02EA24CEFB1200F81413 /* CDTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTask+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		A55B02F024CEFB6600F81413 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
@@ -55,6 +57,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A54DA44224D06B5C007F7F3C /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				A5E5F9A224CD9B7A0096DAE5 /* Task.swift */,
+				A5E5F9A424CD9BD50096DAE5 /* TaskStore.swift */,
+				A5E5F99E24CD9A860096DAE5 /* AllTasksViewController.swift */,
+				A5E5F9A024CD9AAB0096DAE5 /* TaskDetailsViewController.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
 		A55B02E424CEFA8200F81413 /* CDSupportFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,13 +108,11 @@
 			children = (
 				A55B02EF24CEFB5200F81413 /* Repository */,
 				A55B02E424CEFA8200F81413 /* CDSupportFiles */,
+				A54DA44224D06B5C007F7F3C /* Task */,
+				A54DA44024D06B54007F7F3C /* CategoriesViewController.swift */,
 				A5E5F98724CD99870096DAE5 /* AppDelegate.swift */,
 				A5E5F98924CD99870096DAE5 /* SceneDelegate.swift */,
 				A5E5F98D24CD99870096DAE5 /* Main.storyboard */,
-				A5E5F9A224CD9B7A0096DAE5 /* Task.swift */,
-				A5E5F9A424CD9BD50096DAE5 /* TaskStore.swift */,
-				A5E5F99E24CD9A860096DAE5 /* AllTasksViewController.swift */,
-				A5E5F9A024CD9AAB0096DAE5 /* TaskDetailsViewController.swift */,
 				A5E5F99324CD99900096DAE5 /* Assets.xcassets */,
 				A5E5F99524CD99900096DAE5 /* LaunchScreen.storyboard */,
 				A5E5F99824CD99900096DAE5 /* Info.plist */,
@@ -182,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5E5F9A124CD9AAB0096DAE5 /* TaskDetailsViewController.swift in Sources */,
+				A54DA44124D06B54007F7F3C /* CategoriesViewController.swift in Sources */,
 				A5E5F99224CD99880096DAE5 /* DICoreDataRealmTask.xcdatamodeld in Sources */,
 				A5E5F99F24CD9A860096DAE5 /* AllTasksViewController.swift in Sources */,
 				A55B02EB24CEFB1200F81413 /* CDTask+CoreDataClass.swift in Sources */,
