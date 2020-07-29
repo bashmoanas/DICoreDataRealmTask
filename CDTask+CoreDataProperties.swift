@@ -2,7 +2,7 @@
 //  CDTask+CoreDataProperties.swift
 //  DICoreDataRealmTask
 //
-//  Created by Anas Bashandy on 27/7/20.
+//  Created by Anas Bashandy on 29/7/20.
 //  Copyright © 2020 Anas Bashandy. All rights reserved.
 //
 //
@@ -18,11 +18,9 @@ extension CDTask {
     }
 
     @NSManaged public var name: String?
-    
-    // MARK: - Helper Methods
+    @NSManaged public var id: UUID?
     
     func convertToTask() -> Task {
-        return Task(name: self.name!)
+        return Task(id: self.id ?? UUID(), name: self.name!)
     }
-
 }

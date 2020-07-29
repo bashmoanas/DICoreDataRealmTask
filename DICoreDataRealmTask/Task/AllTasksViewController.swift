@@ -20,6 +20,7 @@ class AllTasksViewController: UITableViewController, TaskCreationProtocol {
         super.viewWillAppear(animated)
         
         taskStore.allTasks = taskStore.fetchTasks() ?? [Task]()
+        tableView.reloadData()
     }
     
     // MARK: - Table View Data Source Methods
@@ -41,15 +42,14 @@ class AllTasksViewController: UITableViewController, TaskCreationProtocol {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let task = taskStore.getTaskAt(index: indexPath.row)
-            guard taskStore.deleteTask(task) else { return }
+            taskStore.deleteTask(task)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedIndexPath = tableView.indexPathForSelectedRow!
-        let selectedTask = taskStore.getTaskAt(index: selectedIndexPath.row)
-        pushToTashDetailsViewController(withTask: selectedTask)
+        let selectedTask = taskStore.getTaskAt(index: indexPath.row)
+        pushToTaskDetailsViewController(withTask: selectedTask)
     }
     
     // MARK: - Data Passing
@@ -61,15 +61,17 @@ class AllTasksViewController: UITableViewController, TaskCreationProtocol {
     }
     
     func userUpdated(_ task: Task) {
-        let selectedIndexPath = tableView.indexPathForSelectedRow!
-        taskStore.allTasks[selectedIndexPath.row] = task
-        tableView.reloadRows(at: [selectedIndexPath], with: .automatic)
+        taskStore.allTasks = taskStore.allTasks
+//        let selectedIndexPath = tableView.indexPathForSelectedRow!
+//        taskStore.allTasks[selectedIndexPath.row] = task
+        tableView.reloadData()
     }
         
     // MARK: - Helper Methods
     
     private func presentTaskDetailsViewController() {
-        let taskDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "taskDetailsViewController") as! TaskDetailsViewController
+        let taskDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TaskDetailsViewController") as! TaskDetailsViewController
+        taskDetailsViewController.commingFrom = .addNew
         let navigationController = UINavigationController(rootViewController: taskDetailsViewController)
         taskDetailsViewController.taskStore = taskStore
         taskDetailsViewController.delegate = self
@@ -77,13 +79,14 @@ class AllTasksViewController: UITableViewController, TaskCreationProtocol {
     }
     
     private func presentCategoriesViewController() {
-        let cagegoriesViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "categoriesViewController") as! CategoriesViewController
+        let cagegoriesViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CategoriesViewController") as! CategoriesViewController
         let navigationController = UINavigationController(rootViewController: cagegoriesViewController)
         present(navigationController, animated: true, completion: nil)
     }
     
-    private func pushToTashDetailsViewController(withTask task: Task) {
-        let taskDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "taskDetailsViewController") as! TaskDetailsViewController
+    private func pushToTaskDetailsViewController(withTask task: Task) {
+        let taskDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TaskDetailsViewController") as! TaskDetailsViewController
+        taskDetailsViewController.commingFrom = .update
         taskDetailsViewController.task = task
         taskDetailsViewController.delegate = self
         navigationController?.pushViewController(taskDetailsViewController, animated: true)

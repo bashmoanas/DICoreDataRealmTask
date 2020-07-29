@@ -10,7 +10,8 @@ import Foundation
 
 protocol TaskRepository {
     func create(task: Task)
-    func getAll() -> [Task]?
+    func getAllTasks() -> [Task]?
+    func getTaskByIdentifier(_ identifier: UUID) -> Task?
     func update(task: Task) -> Bool
     func delete(task: Task) -> Bool
 }

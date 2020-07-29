@@ -9,5 +9,6 @@
 import Foundation
 
 struct Task: Equatable {
+    var id: UUID
     var name: String
 }

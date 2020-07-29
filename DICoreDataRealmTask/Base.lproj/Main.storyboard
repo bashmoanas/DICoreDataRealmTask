@@ -9,7 +9,7 @@
         <!--All Tasks-->
         <scene sceneID="tju-eI-5rJ">
             <objects>
-                <tableViewController storyboardIdentifier="allTasksViewController" id="Ism-1t-qg9" customClass="AllTasksViewController" customModule="DICoreDataRealmTask" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AllTasksViewController" id="Ism-1t-qg9" customClass="AllTasksViewController" customModule="DICoreDataRealmTask" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="atH-w4-il5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,7 +53,7 @@
         <!--Categories View Controller-->
         <scene sceneID="9gz-oH-FCm">
             <objects>
-                <tableViewController storyboardIdentifier="categoriesViewController" id="bpS-Gl-32F" customClass="CategoriesViewController" customModule="DICoreDataRealmTask" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CategoriesViewController" id="bpS-Gl-32F" customClass="CategoriesViewController" customModule="DICoreDataRealmTask" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="OZg-hy-cqJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,7 +98,7 @@
         <!--Task Details View Controller-->
         <scene sceneID="GlS-h1-d53">
             <objects>
-                <tableViewController storyboardIdentifier="taskDetailsViewController" id="FIi-Rf-xst" customClass="TaskDetailsViewController" customModule="DICoreDataRealmTask" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TaskDetailsViewController" id="FIi-Rf-xst" customClass="TaskDetailsViewController" customModule="DICoreDataRealmTask" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="V7v-bS-4Ty">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

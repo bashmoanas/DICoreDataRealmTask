@@ -28,28 +28,25 @@ struct TaskStore {
     
     mutating func createTask(_ task: Task) {
         taskDataRepository.create(task: task)
-        allTasks.append(task)
     }
     
     func fetchTasks() -> [Task]? {
-        return taskDataRepository.getAll()
+        return taskDataRepository.getAllTasks()
     }
     
-    mutating func updateTask(_ task: Task) -> Bool {
-        guard let index = allTasks.firstIndex(of: task) else { return false }
-        
-        guard taskDataRepository.update(task: task) else { return false}
-        
-        return true
+    func fetchTaskByID(_ id: UUID) -> Task? {
+        return taskDataRepository.getTaskByIdentifier(id)
     }
     
-    mutating func deleteTask(_ task: Task) -> Bool {
+    @discardableResult mutating func updateTask(_ task: Task) -> Bool {
+        return taskDataRepository.update(task: task)
+    }
+    
+    @discardableResult mutating func deleteTask(_ task: Task) -> Bool {
         guard let index = allTasks.firstIndex(of: task) else { return false }
-        
-        guard taskDataRepository.delete(task: task) else { return false }
         allTasks.remove(at: index)
         
-        return true
+        return taskDataRepository.delete(task: task)
     }
     
 }
