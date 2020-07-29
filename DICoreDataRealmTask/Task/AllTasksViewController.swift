@@ -20,7 +20,6 @@ class AllTasksViewController: UITableViewController, TaskCreationProtocol {
         super.viewWillAppear(animated)
         
         taskStore.allTasks = taskStore.fetchTasks() ?? [Task]()
-        tableView.reloadData()
     }
     
     // MARK: - Table View Data Source Methods
@@ -62,15 +61,13 @@ class AllTasksViewController: UITableViewController, TaskCreationProtocol {
     
     func userUpdated(_ task: Task) {
         taskStore.allTasks = taskStore.allTasks
-//        let selectedIndexPath = tableView.indexPathForSelectedRow!
-//        taskStore.allTasks[selectedIndexPath.row] = task
         tableView.reloadData()
     }
-        
+    
     // MARK: - Helper Methods
     
     private func presentTaskDetailsViewController() {
-        let taskDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TaskDetailsViewController") as! TaskDetailsViewController
+        let taskDetailsViewController = TaskDetailsViewController.instantiateViewController(fromStoryboard: .main)
         taskDetailsViewController.commingFrom = .addNew
         let navigationController = UINavigationController(rootViewController: taskDetailsViewController)
         taskDetailsViewController.taskStore = taskStore
@@ -79,13 +76,13 @@ class AllTasksViewController: UITableViewController, TaskCreationProtocol {
     }
     
     private func presentCategoriesViewController() {
-        let cagegoriesViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CategoriesViewController") as! CategoriesViewController
+        let cagegoriesViewController = CategoriesViewController.instantiateViewController(fromStoryboard: .main)
         let navigationController = UINavigationController(rootViewController: cagegoriesViewController)
         present(navigationController, animated: true, completion: nil)
     }
     
     private func pushToTaskDetailsViewController(withTask task: Task) {
-        let taskDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TaskDetailsViewController") as! TaskDetailsViewController
+        let taskDetailsViewController = TaskDetailsViewController.instantiateViewController(fromStoryboard: .main)
         taskDetailsViewController.commingFrom = .update
         taskDetailsViewController.task = task
         taskDetailsViewController.delegate = self
