@@ -37,7 +37,7 @@ class AllCategoriesViewController: UITableViewController {
         alertController.addTextField()
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
             let userInput = alertController.textFields![0]
-            guard let text = userInput.text else { return }
+            let text = userInput.text ?? ""
             let category = Category(id: UUID(), name: text, tasks: [Task]())
             self.categoryStore.createCategory(category)
             self.tableView.reloadData()

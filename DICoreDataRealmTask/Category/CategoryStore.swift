@@ -9,7 +9,7 @@
 import Foundation
 
 struct CategoryStore {
-        
+    
     var allCategories = [Category]()
     
     var taskCount: Int {
@@ -21,28 +21,25 @@ struct CategoryStore {
     }
     
     mutating func createCategory(_ category: Category) {
-        allCategories.append(category)
     }
     
-//    func fetchTasks() -> [Task]? {
-//        return taskDataRepository.getAll()
-//    }
+    func fetchCategories() -> [Category]? {
+        return nil
+    }
     
-//    mutating func updateTask(_ task: Task) -> Bool {
-//        guard let index = allTasks.firstIndex(of: task) else { return false }
-//
-//        guard taskDataRepository.update(task: task) else { return false}
-//
-//        return true
-//    }
+    func fetchCategoryByID(_ id: UUID) -> Category? {
+        return nil
+    }
     
-//    mutating func deleteTask(_ task: Task) -> Bool {
+    @discardableResult mutating func updateCategory(_ category: Category) -> Bool {
+        return false
+    }
+    
+    @discardableResult mutating func deleteCategory(_ category: Category) -> Bool {
 //        guard let index = allTasks.firstIndex(of: task) else { return false }
-//        
-//        guard taskDataRepository.delete(task: task) else { return false }
 //        allTasks.remove(at: index)
-//        
-//        return true
-//    }
+        
+        return false
+    }
     
 }

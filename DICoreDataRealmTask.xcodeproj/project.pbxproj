@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A54DA44124D06B54007F7F3C /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DA44024D06B54007F7F3C /* CategoriesViewController.swift */; };
+		A54DA44124D06B54007F7F3C /* AllCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DA44024D06B54007F7F3C /* AllCategoriesViewController.swift */; };
 		A54DA44424D06F51007F7F3C /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DA44324D06F51007F7F3C /* CategoryStore.swift */; };
 		A54DA44624D06F7E007F7F3C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DA44524D06F7E007F7F3C /* Category.swift */; };
 		A54DA44C24D13FBB007F7F3C /* NavigationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DA44B24D13FBB007F7F3C /* NavigationFlow.swift */; };
@@ -29,7 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A54DA44024D06B54007F7F3C /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		A54DA44024D06B54007F7F3C /* AllCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCategoriesViewController.swift; sourceTree = "<group>"; };
 		A54DA44324D06F51007F7F3C /* CategoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryStore.swift; sourceTree = "<group>"; };
 		A54DA44524D06F7E007F7F3C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		A54DA44B24D13FBB007F7F3C /* NavigationFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationFlow.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 			children = (
 				A54DA44524D06F7E007F7F3C /* Category.swift */,
 				A54DA44324D06F51007F7F3C /* CategoryStore.swift */,
-				A54DA44024D06B54007F7F3C /* CategoriesViewController.swift */,
+				A54DA44024D06B54007F7F3C /* AllCategoriesViewController.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -218,7 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5E5F9A124CD9AAB0096DAE5 /* TaskDetailsViewController.swift in Sources */,
-				A54DA44124D06B54007F7F3C /* CategoriesViewController.swift in Sources */,
+				A54DA44124D06B54007F7F3C /* AllCategoriesViewController.swift in Sources */,
 				A5E5F99224CD99880096DAE5 /* DICoreDataRealmTask.xcdatamodeld in Sources */,
 				A5E5F99F24CD9A860096DAE5 /* AllTasksViewController.swift in Sources */,
 				A55B02EB24CEFB1200F81413 /* CDTask+CoreDataClass.swift in Sources */,

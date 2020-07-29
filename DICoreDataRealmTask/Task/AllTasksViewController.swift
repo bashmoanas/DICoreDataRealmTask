@@ -76,7 +76,7 @@ class AllTasksViewController: UITableViewController, TaskCreationProtocol {
     }
     
     private func presentCategoriesViewController() {
-        let cagegoriesViewController = CategoriesViewController.instantiateViewController(fromStoryboard: .main)
+        let cagegoriesViewController = AllCategoriesViewController.instantiateViewController(fromStoryboard: .main)
         let navigationController = UINavigationController(rootViewController: cagegoriesViewController)
         present(navigationController, animated: true, completion: nil)
     }
