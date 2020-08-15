@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDCategory" representedClassName="CDCategory" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isExpanded" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="toTask" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDTask" inverseName="toCategory" inverseEntity="CDTask"/>
+    </entity>
     <entity name="CDTask" representedClassName="CDTask" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
+        <relationship name="toCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDCategory" inverseName="toTask" inverseEntity="CDCategory"/>
     </entity>
     <elements>
-        <element name="CDTask" positionX="-54" positionY="-9" width="128" height="73"/>
+        <element name="CDCategory" positionX="-100.26953125" positionY="-26.875" width="128" height="103"/>
+        <element name="CDTask" positionX="-299.546875" positionY="-32.44921875" width="128" height="88"/>
     </elements>
 </model>

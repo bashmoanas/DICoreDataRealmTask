@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CategoryHeader" customModule="DICoreDataRealmTask" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="707-ux-Nqq">
+                    <rect key="frame" x="80.5" y="40" width="200" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yEE-er-ayT">
+                    <rect key="frame" x="288.5" y="42.5" width="15.5" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="yEE-er-ayT" secondAttribute="height" multiplier="1:1" id="MYm-zN-7fI"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9Y-qd-u4n">
+                    <rect key="frame" x="16" y="39" width="19.5" height="22"/>
+                    <state key="normal" image="trash" catalog="system"/>
+                    <connections>
+                        <action selector="deleteSections:" destination="iN0-l3-epB" eventType="touchUpInside" id="vNm-eg-297"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9R-GO-zSO">
+                    <rect key="frame" x="43.5" y="39" width="29" height="22"/>
+                    <state key="normal" image="pencil.and.ellipsis.rectangle" catalog="system"/>
+                    <connections>
+                        <action selector="editCategoryTitle:" destination="iN0-l3-epB" eventType="touchUpInside" id="199-Ge-1cO"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzd-mJ-Why">
+                    <rect key="frame" x="80.5" y="33" width="200" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="bzd-mJ-Why" firstAttribute="leading" secondItem="W9R-GO-zSO" secondAttribute="trailing" constant="8" id="10M-CZ-dIf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="yEE-er-ayT" secondAttribute="trailing" constant="16" id="5LY-yD-E7K"/>
+                <constraint firstItem="bzd-mJ-Why" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="5Uf-dN-0nc"/>
+                <constraint firstItem="yEE-er-ayT" firstAttribute="height" secondItem="707-ux-Nqq" secondAttribute="height" multiplier="0.75" id="APm-99-yjX"/>
+                <constraint firstItem="yEE-er-ayT" firstAttribute="leading" secondItem="707-ux-Nqq" secondAttribute="trailing" constant="8" id="PCE-kM-lSq"/>
+                <constraint firstItem="w9Y-qd-u4n" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Xnb-0q-7G4"/>
+                <constraint firstItem="W9R-GO-zSO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bhQ-3o-Htq"/>
+                <constraint firstItem="707-ux-Nqq" firstAttribute="leading" secondItem="W9R-GO-zSO" secondAttribute="trailing" constant="8" id="gif-4U-mjQ"/>
+                <constraint firstItem="bzd-mJ-Why" firstAttribute="width" secondItem="707-ux-Nqq" secondAttribute="width" id="hh0-bJ-IJN"/>
+                <constraint firstItem="w9Y-qd-u4n" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="jPK-bI-UPC"/>
+                <constraint firstItem="yEE-er-ayT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="k65-sy-uoy"/>
+                <constraint firstItem="W9R-GO-zSO" firstAttribute="leading" secondItem="w9Y-qd-u4n" secondAttribute="trailing" constant="8" id="raC-Vw-i3a"/>
+                <constraint firstItem="707-ux-Nqq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="y4G-TV-vbd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="chevronImageView" destination="yEE-er-ayT" id="UJH-e1-w6t"/>
+                <outlet property="deleteButton" destination="w9Y-qd-u4n" id="4Uy-z5-g1J"/>
+                <outlet property="editCategoryButton" destination="W9R-GO-zSO" id="MQ3-tu-9Ue"/>
+                <outlet property="editCategoryTextField" destination="bzd-mJ-Why" id="jAD-3N-HiR"/>
+                <outlet property="nameLabel" destination="707-ux-Nqq" id="0EG-Kc-Ibs"/>
+            </connections>
+            <point key="canvasLocation" x="161.25" y="75.528169014084511"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="pencil.and.ellipsis.rectangle" catalog="system" width="128" height="81"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
+    </resources>
+</document>

@@ -17,10 +17,8 @@ extension CDTask {
         return NSFetchRequest<CDTask>(entityName: "CDTask")
     }
 
-    @NSManaged public var name: String?
     @NSManaged public var id: UUID?
-    
-    func convertToTask() -> Task {
-        return Task(id: self.id ?? UUID(), name: self.name!)
-    }
+    @NSManaged public var name: String?
+    @NSManaged public var toCategory: CDCategory?
+
 }

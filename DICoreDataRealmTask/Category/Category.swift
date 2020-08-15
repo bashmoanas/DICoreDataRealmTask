@@ -8,8 +8,21 @@
 
 import Foundation
 
-struct Category {
+class Category: Equatable {
     var id: UUID
     var name: String
-    var tasks: [Task]
+    var isExpanded: Bool
+    
+    var tasks: [Task]?
+    
+    init(id: UUID, name: String, isExpanded: Bool, tasks: [Task]?) {
+        self.id = id
+        self.name = name
+        self.isExpanded = isExpanded
+        self.tasks = tasks
+    }
+    
+    static func ==(lhs: Category, rhs: Category) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

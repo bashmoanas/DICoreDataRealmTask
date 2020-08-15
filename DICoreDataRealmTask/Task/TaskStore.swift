@@ -8,13 +8,9 @@
 
 import Foundation
 
-struct TaskStore {
+class TaskStore {
     
-    init(taskStore: TaskRepository) {
-        taskDataRepository = taskStore
-    }
-    
-    var taskDataRepository: TaskRepository!
+    var taskDataRepository = CDTaskRepository()
     
     var allTasks = [Task]()
     
@@ -26,27 +22,28 @@ struct TaskStore {
         return allTasks[index]
     }
     
-    mutating func createTask(_ task: Task) {
-        taskDataRepository.create(task: task)
+    func createTask(_ task: Task) {
+        allTasks.append(task)
+        taskDataRepository.create(item: task)
     }
     
     func fetchTasks() -> [Task]? {
-        return taskDataRepository.getAllTasks()
+        return taskDataRepository.getAllItems()
     }
     
     func fetchTaskByID(_ id: UUID) -> Task? {
-        return taskDataRepository.getTaskByIdentifier(id)
+        return taskDataRepository.getItemByIdentifier(id)
     }
     
-    @discardableResult mutating func updateTask(_ task: Task) -> Bool {
-        return taskDataRepository.update(task: task)
+    @discardableResult func updateTask(_ task: Task) -> Bool {
+        return taskDataRepository.update(item: task)
     }
     
-    @discardableResult mutating func deleteTask(_ task: Task) -> Bool {
+    @discardableResult func deleteTask(_ task: Task) -> Bool {
         guard let index = allTasks.firstIndex(of: task) else { return false }
         allTasks.remove(at: index)
         
-        return taskDataRepository.delete(task: task)
+        return taskDataRepository.delete(item: task)
     }
     
 }

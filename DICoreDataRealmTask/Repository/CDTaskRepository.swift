@@ -9,40 +9,41 @@
 import Foundation
 import CoreData
 
-struct CDTaskRepository: TaskRepository {
-    func create(task: Task) {
+struct CDTaskRepository: Repository {
+    
+    func create(item: Task) {
         let cdTask = CDTask(context: CDPersistentStorage.shared.context)
-        cdTask.name = task.name
-        cdTask.id = task.id
+        cdTask.id = item.id
+        cdTask.name = item.name        
         
         CDPersistentStorage.shared.saveContext()
     }
     
-    func getAllTasks() -> [Task]? {
+    func getAllItems() -> [Task]? {
         let results = CDPersistentStorage.shared.fetchManagedObject(managedObject: CDTask.self)
         return results?.map { $0.convertToTask() }
     }
     
-    func getTaskByIdentifier(_ id: UUID) -> Task? {
+    func getItemByIdentifier(_ id: UUID) -> Task? {
         let result = getCDTask(byID: id)
         guard result != nil else { return nil }
         
         return result.map { $0.convertToTask() }
     }
     
-    func update(task: Task) -> Bool {
-        let cdTask = getCDTask(byID: task.id)
+    func update(item: Task) -> Bool {
+        let cdTask = getCDTask(byID: item.id)
         guard cdTask != nil else { return false }
         
-        cdTask?.name = task.name
+        cdTask?.name = item.name
                 
         CDPersistentStorage.shared.saveContext()
         
         return true
     }
     
-    func delete(task: Task) -> Bool {
-        let cdTask = getCDTask(byID: task.id)
+    func delete(item: Task) -> Bool {
+        let cdTask = getCDTask(byID: item.id)
         guard cdTask != nil else { return false }
         
         CDPersistentStorage.shared.context.delete(cdTask!)

@@ -8,11 +8,13 @@
 
 import Foundation
 
-struct CategoryStore {
+class CategoryStore {
+    
+    var categoryDataRepository = CDCategoryRepository()
     
     var allCategories = [Category]()
     
-    var taskCount: Int {
+    var categoryCount: Int {
         return allCategories.count
     }
     
@@ -20,26 +22,25 @@ struct CategoryStore {
         return allCategories[index]
     }
     
-    mutating func createCategory(_ category: Category) {
+    func createCategory(_ category: Category) {
+//        allCategories.append(category)
+        categoryDataRepository.create(item: category)
     }
     
     func fetchCategories() -> [Category]? {
-        return nil
+        return categoryDataRepository.getAllItems()
     }
     
     func fetchCategoryByID(_ id: UUID) -> Category? {
-        return nil
+        return categoryDataRepository.getItemByIdentifier(id)
     }
     
-    @discardableResult mutating func updateCategory(_ category: Category) -> Bool {
-        return false
+    @discardableResult func updateCategory(_ category: Category) -> Bool {
+        return categoryDataRepository.update(item: category)
     }
     
-    @discardableResult mutating func deleteCategory(_ category: Category) -> Bool {
-//        guard let index = allTasks.firstIndex(of: task) else { return false }
-//        allTasks.remove(at: index)
-        
-        return false
+    @discardableResult func deleteCategory(_ category: Category) -> Bool {
+        return categoryDataRepository.delete(item: category)
     }
     
 }

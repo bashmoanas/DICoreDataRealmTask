@@ -18,7 +18,7 @@ enum ViewControllers {
     case update
 }
 
-class TaskDetailsViewController: UITableViewController {
+class TaskDetailsViewController: UIViewController {
     
     // MARK: - Outlets
     
@@ -28,7 +28,7 @@ class TaskDetailsViewController: UITableViewController {
     
     weak var delegate: TaskCreationProtocol?
     
-    var taskStore = TaskStore(taskStore: CDTaskRepository())
+    var taskStore = TaskStore()
     var task: Task!
     var commingFrom = ViewControllers.addNew
     
